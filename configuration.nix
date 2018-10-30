@@ -8,7 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      "${builtins.fetchTarball https://github.com/rycee/home-manager/archive/master.tar.gz}/nixos"
+      ./home.nix
     ];
 
   # Use the GRUB 2 boot loader.
@@ -87,23 +87,6 @@
   # Enable the KDE Desktop Environment.
   # services.xserver.displayManager.sddm.enable = true;
   # services.xserver.desktopManager.plasma5.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.charlie = {
-    isNormalUser = true;
-    home = "/home/charlie";
-    description = "Charlie Hanley";
-    extraGroups = [ "wheel" "video" "audio" "disk" "networkmanager" ];
-    uid = 1000;
-  };
-  home-manager.users.charlie = {
-    programs.git = {
-      enable = true;
-      userName = "Charlie Hanley";
-      userEmail = "charles.scott.hanley+git@gmail.com";
-      aliases.lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
-    };
-  };
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
