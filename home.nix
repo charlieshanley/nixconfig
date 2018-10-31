@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   imports =
@@ -16,7 +16,14 @@
   };
 
   home-manager.users.charlie = {
+    # xsession.windowManager.xmonad.config = pkgs.writeText "xmonad.hs" ''
+    # '';
     programs = {
+      urxvt = {
+        enable = true;
+        scroll.bar.enable = false;
+        transparent = true;
+      };
       git = {
         enable = true;
         userName = "Charlie Hanley";

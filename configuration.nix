@@ -29,7 +29,6 @@
 
   # Select internationalisation properties.
   i18n = {
-    consoleFont = "Lat2-Terminus16";
     consoleKeyMap = "us";
     defaultLocale = "en_US.UTF-8";
   };
@@ -40,7 +39,11 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    tmux vim wget curl htop git firefox keepass
+    tmux vim git ghc haskellPackages.ghcid
+    wget curl htop unzip zip scrot
+    haskellPackages.xmobar
+    firefox
+    keepass
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -63,8 +66,18 @@
   # services.printing.enable = true;
 
   # Enable sound.
-  sound.enable = true;
+  sound = {
+    enable = true;
+    # mediaKeys = {
+    #   enable = true;
+    #   volumeStep = "5%";
+    # };
+  };
   hardware.pulseaudio.enable = true;
+
+  boot.extraModprobeConfig = ''
+    options snd slots=snd-hda-intel
+  '';
 
   # Enable the X11 windowing system.
   services.xserver = {
