@@ -24,6 +24,11 @@
         scroll.bar.enable = false;
         transparent = true;
         fonts = [ "xft:DejaVu Sans Mono:size=9" ];
+        extraConfig = {
+          foreground = "#ebdbb2";
+        };
+        keybindings = {
+        };
       };
       bash = {
         enable = true;
@@ -57,6 +62,7 @@
             let g:gruvbox_italic=1
 	    colorscheme gruvbox
 	    set background=dark
+            highlight Normal ctermbg=None
 
 	    set wildmenu
             set showcmd
