@@ -33,12 +33,20 @@
       vim = {
         enable = true;
         plugins = [ "gitgutter" "airline" "commentary" "gruvbox" "haskell-vim" ];
+        settings = {
+          background = "dark";
+          expandtab  = true;
+          hidden     = true;
+          ignorecase = true;
+          shiftwidth = 4;
+          smartcase  = true;
+          number     = true;
+        };
         extraConfig =
         ''
           set nocompatible
           filetype plugin indent on
           syntax on
-          set hidden
 
           " better command-line completion
           set wildmenu
@@ -48,8 +56,6 @@
 
           " search options
           set incsearch
-          set ignorecase
-          set smartcase
 
           " Allow backspacing over autoindent, line breaks and start of insert action
           set backspace=indent,eol,start
@@ -73,9 +79,7 @@
 
           " Indentation settings for using 4 spaces instead of tabs.
           " Do not change 'tabstop' from its default value of 8 with this setup.
-          set shiftwidth=4
           set softtabstop=4
-          set expandtab
 
           set colorcolumn=80
 
