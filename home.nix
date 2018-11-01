@@ -23,6 +23,14 @@
         enable = true;
         scroll.bar.enable = false;
         transparent = true;
+        fonts = [ "xft:DejaVu Sans Mono:size=9" ];
+      };
+      bash = {
+        enable = true;
+        initExtra = ''
+        source ${pkgs.vimPlugins.gruvbox}/share/vim-plugins/gruvbox/gruvbox_256palette.sh
+        cs() { cd "$@" && ls -lat; }
+        '';
       };
       git = {
         enable = true;
@@ -30,75 +38,63 @@
         userEmail = "charles.scott.hanley+git@gmail.com";
         aliases.lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
       };
-      vim = {
+      neovim = {
         enable = true;
-        plugins = [ "gitgutter" "airline" "commentary" "gruvbox" "haskell-vim" ];
-        settings = {
-          background = "dark";
-          expandtab  = true;
-          hidden     = true;
-          ignorecase = true;
-          shiftwidth = 4;
-          smartcase  = true;
-          number     = true;
+        configure = {
+          packages.myVimPackage = with pkgs.vimPlugins; {
+            start = [ gitgutter airline commentary gruvbox haskell-vim vim-nix ];
+            opt = [];
+          };
+          customRC = ''
+	    set nocompatible
+	    filetype plugin indent on
+	    syntax on
+	    set hidden
+
+            " for gitgutter
+	    set updatetime=300 
+
+            let g:gruvbox_italic=1
+	    colorscheme gruvbox
+	    set background=dark
+
+	    set wildmenu
+            set showcmd
+	    set hlsearch
+	    set incsearch
+	    set ignorecase
+	    set smartcase
+	    set backspace=indent,eol,start
+	    set autoindent
+	    set nostartofline
+	    set ruler
+	    set laststatus=2
+	    set confirm
+
+	    set number relativenumber
+
+	    " revert to absolute numbers in insert mode and when buffer loses focus
+	    augroup numbertoggle
+	      autocmd!
+	      autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+	      autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+	    augroup end
+
+	    set notimeout ttimeout ttimeoutlen=200
+
+	    " <F11> to toggle between paste and nopaste
+	    set pastetoggle=<F11>
+	    set scrolloff=3
+	    set shiftwidth=4
+	    set softtabstop=4
+	    set expandtab
+	    set colorcolumn=80
+
+	    let mapleader=" "
+	    map Y y$
+	    noremap <C-L> :nohl<CR><C-L>
+          '';
         };
-        extraConfig =
-        ''
-          set nocompatible
-          filetype plugin indent on
-          syntax on
-
-          " better command-line completion
-          set wildmenu
-
-          " show partial commands in last line of screen
-          set showcmd
-
-          " search options
-          set incsearch
-
-          " Allow backspacing over autoindent, line breaks and start of insert action
-          set backspace=indent,eol,start
-
-          " When opening a new line and no filetype-specific indenting is enabled, keep
-          " the same indent as the line you're currently on. Useful for READMEs, etc.
-          set autoindent
-
-          " Revert to absolute numbers in insert mode and when buffer loses focus
-          augroup numbertoggle
-              autocmd!
-              autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-              autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-          augroup end
-
-          " Quickly time out on keycodes, but never time out on mappings
-          set notimeout ttimeout ttimeoutlen=200
-
-          " Always show at least one line above or below cursor.
-          set scrolloff=3
-
-          " Indentation settings for using 4 spaces instead of tabs.
-          " Do not change 'tabstop' from its default value of 8 with this setup.
-          set softtabstop=4
-
-          set colorcolumn=80
-
-          " gitgutter update interval
-          set updatetime=300
-
-          " Colorscheme
-          set background=dark
-          colorscheme gruvbox
-
-          " Mappings
-          let mapleader=" "
-
-          " Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy
-          map Y y$
-
-          " Map <C-L> (redraw screen) to also turn off search highlighting until next search
-          nnoremap <C-L> :nohl<CR><C-L>
-        '';
       };
     };
   };
