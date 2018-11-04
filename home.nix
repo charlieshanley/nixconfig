@@ -1,5 +1,9 @@
 { pkgs, ... }:
 
+let
+  gruvbox-phaazon = pkgs.callPackage ./gruvbox-phaazon.nix {};
+in
+
 {
   imports =
     [
@@ -33,7 +37,7 @@
       bash = {
         enable = true;
         initExtra = ''
-        source ${pkgs.vimPlugins.gruvbox}/share/vim-plugins/gruvbox/gruvbox_256palette.sh
+        source ${gruvbox-phaazon}/share/vim-plugins/gruvbox/gruvbox_256palette.sh
         cs() { cd "$@" && ls -lat; }
         '';
       };
@@ -47,13 +51,17 @@
         enable = true;
         configure = {
           packages.myVimPackage = with pkgs.vimPlugins; {
-            start = [ gitgutter airline commentary gruvbox haskell-vim vim-nix ];
+            start = [
+              gruvbox-phaazon
+              gitgutter airline commentary
+              vim-nix haskell-vim
+            ];
             opt = [];
           };
           customRC = ''
 	    set nocompatible
-	    filetype plugin indent on
 	    syntax on
+	    filetype plugin indent on
 	    set hidden
 
             " for gitgutter
