@@ -50,6 +50,7 @@ in
       };
       neovim = {
         enable = true;
+        vimAlias = true;
         configure = {
           packages.myVimPackage = with pkgs.vimPlugins; {
             start = [
