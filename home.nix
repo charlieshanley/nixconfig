@@ -2,6 +2,7 @@
 
 let
   gruvbox-phaazon = pkgs.callPackage ./gruvbox-phaazon.nix {};
+  haskell-vim-csh = pkgs.callPackage ./haskell-vim-csh.nix {};
 in
 
 {
@@ -54,7 +55,7 @@ in
             start = [
               gruvbox-phaazon
               gitgutter airline commentary
-              vim-nix haskell-vim
+              vim-nix haskell-vim-csh
             ];
             opt = [];
           };
