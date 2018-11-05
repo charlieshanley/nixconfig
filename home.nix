@@ -21,6 +21,17 @@ in
   };
 
   home-manager.users.charlie = {
+
+    services.redshift = {
+      enable = true;
+      latitude  = "38.9072";
+      longitude = "-77.0369";
+      temperature = {
+        day   = 6000;
+        night = 2500;
+      };
+    };
+
     # xsession.windowManager.xmonad.config = pkgs.writeText "xmonad.hs" ''
     # '';
     programs = {
