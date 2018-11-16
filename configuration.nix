@@ -4,6 +4,10 @@
 
 { config, pkgs, ... }:
 
+let
+  bg = ;
+in
+
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -73,6 +77,7 @@
     #   volumeStep = "5%";
     # };
   };
+
   hardware = {
     pulseaudio.enable = true;
     trackpoint.emulateWheel = true;
@@ -96,6 +101,11 @@
       enableContribAndExtras = true;
       extraPackages = haskellPackages : [];
     };
+  };
+
+  programs.xss-lock = {
+    enable = true;
+    lockerCommand = "${pkgs.i3lock}/bin/i3lock -i ${bg}/bg.png";
   };
 
   # Enable the KDE Desktop Environment.
