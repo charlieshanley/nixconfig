@@ -41,7 +41,10 @@ in
         transparent = true;
         fonts = [ "xft:DejaVu Sans Mono:size=9" ];
         extraConfig = {
-          foreground = "#ebdbb2";
+          shading = 20;
+          foreground     = "#ebdbb2";
+          highlightColor = "#7c6f64";
+          cursorColor    = "#7c6f64";
         };
         keybindings = {
         };
@@ -53,6 +56,7 @@ in
         cs() { cd "$@" && ls -lat; }
         '';
       };
+      feh.enable = true;
       git = {
         enable = true;
         userName = "Charlie Hanley";

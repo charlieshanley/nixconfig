@@ -73,7 +73,10 @@
     #   volumeStep = "5%";
     # };
   };
-  hardware.pulseaudio.enable = true;
+  hardware = {
+    pulseaudio.enable = true;
+    trackpoint.emulateWheel = true;
+  };
 
   boot.extraModprobeConfig = ''
     options snd slots=snd-hda-intel
@@ -91,11 +94,9 @@
     windowManager.xmonad = {
       enable = true;
       enableContribAndExtras = true;
-      extraPackages = haskellPackages : [haskellPackages.taffybar];
+      extraPackages = haskellPackages : [];
     };
   };
-  # Enable touchpad support.
-  # services.xserver.libinput.enable = true;
 
   # Enable the KDE Desktop Environment.
   # services.xserver.displayManager.sddm.enable = true;
