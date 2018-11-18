@@ -105,7 +105,8 @@ in
 
   programs.xss-lock = {
     enable = true;
-    lockerCommand = "${pkgs.i3lock}/bin/i3lock -i ${bg}/bg.png";
+    lockerCommand = "${pkgs.i3lock}/bin/i3lock";
+    # lockerCommand = "${pkgs.i3lock}/bin/i3lock -i ${bg}/bg.png";
   };
 
   # Enable the KDE Desktop Environment.
