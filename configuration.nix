@@ -39,11 +39,10 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    tmux vim neovim git ghc haskellPackages.ghcid
+    tmux vim git ghc haskellPackages.ghcid
     wget curl htop unzip zip scrot
     haskellPackages.xmobar
     firefox
-    keepass
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
