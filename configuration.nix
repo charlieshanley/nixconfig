@@ -40,8 +40,9 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     tmux vim
-    git ghc haskellPackages.ghcid
     wget curl htop unzip zip scrot
+    nix-diff
+    git ghc haskellPackages.ghcid
     xosd haskellPackages.xmobar
     firefox
   ];
