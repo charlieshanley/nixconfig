@@ -1,0 +1,28 @@
+Config { font = "xft:DejaVu Sans Mono:size=8"
+       , additionalFonts = []
+       , borderColor = "black"
+       , border = TopB
+       , bgColor = "black"
+       , fgColor = "grey"
+       , alpha = 220
+       , position = Top
+       , pickBroadest = False
+       , persistent = True
+       , iconRoot = "."
+       , allDesktops = True
+       , overrideRedirect = False
+       , commands = 
+           [ Run Weather "KDCA" ["-t","<tempF>F <skyCondition>", "-L","40","-H","80", "--high","red", "--low","skyblue"] 36000
+           , Run Network "eth0" ["-L","0","-H","32","--normal","green","--high","red"] 10
+           , Run Cpu ["-L","40","-H","80","--normal","orange","--high","red"] 10
+           , Run Memory ["-t","Mem: <usedratio>%"] 10
+           , Run Swap [] 10
+           , Run Date "%_d %B %Y | %A" "date" 6000
+           , Run Date "%H:%M:%S"       "time" 10
+           , Run Battery [ "-t", "<left>% <acstatus>", "-L", "20", "-l", "red", "--normal", "yellow", "-H", "80", "-h", "green" ] 600
+           , Run StdinReader
+           ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "%battery% | %cpu% | %memory% - %swap% | %eth0%}%StdinReader%{%KDCA% | %date% | <fc=white>%time%</fc>"
+       }
