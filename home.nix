@@ -24,7 +24,7 @@ in
 
     services.redshift = {
       enable = true;
-      latitude  = "38.9072";
+      latitude  =  "38.9072";
       longitude = "-77.0369";
       temperature = {
         day   = 6000;
