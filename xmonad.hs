@@ -27,7 +27,6 @@ main = do
         , borderWidth        = 2
         , focusedBorderColor = "#cd8b00"
         } `additionalKeys`
-        -- TODO interpolate nix derivation
         [ ((mod4Mask .|. shiftMask, xK_f), spawn "${firefox}/bin/firefox")
         , ((controlMask, xK_Print),        spawn "${coreutils}/bin/sleep 0.2; ${scrot}/bin/scrot -s")
         , ((0, xK_Print),                  spawn "${scrot}/bin/scrot")
