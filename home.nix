@@ -38,7 +38,7 @@ in
       config = pkgs.callPackage ./write-xmonad.hs {
         xmobar   = pkgs.haskellPackages.xmobar;
         xmobarrc = ./xmobarrc;
-        bg-img   = ./bg.jpg;
+        bg-img   = ./bg.png;
       };
     };
 
