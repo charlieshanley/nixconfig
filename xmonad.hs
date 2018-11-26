@@ -1,4 +1,4 @@
-{ feh, bg-img, xmobar, xmobarrc, urxvt, firefox, coreutils, scrot } :
+{ feh, bg-img, xmobar, xmobarrc, rxvt_unicode, firefox, coreutils, scrot } :
 ''
 import XMonad
 import XMonad.Hooks.DynamicLog
@@ -23,7 +23,7 @@ main = do
             , ppTitle = (>> "")
             }
         , modMask    = mod4Mask
-        , terminal   = "${urxvt}/bin/urxvt"
+        , terminal   = "${rxvt_unicode}/bin/urxvt"
         , borderWidth        = 2
         , focusedBorderColor = "#cd8b00"
         } `additionalKeys`

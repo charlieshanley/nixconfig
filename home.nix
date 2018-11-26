@@ -32,8 +32,12 @@ in
       };
     };
 
-    # xsession.windowManager.xmonad.config = pkgs.writeText "xmonad.hs" ''
-    # '';
+    xsession.windowManager.xmonad.config = pkgs.callPackage ./xmonad.hs {
+      xmobar   = pkgs.haskellPackages.xmobar;
+      xmobarrc = ./xmobarrc;
+      bg-img   = ./bg.jpg;
+    };
+
     programs = {
       urxvt = {
         enable = true;
