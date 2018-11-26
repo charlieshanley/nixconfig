@@ -32,7 +32,7 @@ in
       };
     };
 
-    xsession.windowManager.xmonad.config = pkgs.callPackage ./xmonad.hs {
+    xsession.windowManager.xmonad.config = pkgs.callPackage ./write-xmonad.hs {
       xmobar   = pkgs.haskellPackages.xmobar;
       xmobarrc = ./xmobarrc;
       bg-img   = ./bg.jpg;

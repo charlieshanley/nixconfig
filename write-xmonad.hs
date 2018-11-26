@@ -1,4 +1,5 @@
-{ feh, bg-img, xmobar, xmobarrc, rxvt_unicode, firefox, coreutils, scrot } :
+{ writeText, feh, bg-img, xmobar, xmobarrc, rxvt_unicode, firefox, coreutils, scrot } :
+writeText "xmonad.hs"
 ''
 import XMonad
 import XMonad.Hooks.DynamicLog
