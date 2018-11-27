@@ -22,16 +22,6 @@ in
 
   home-manager.users.charlie = {
 
-    services.redshift = {
-      enable = true;
-      latitude  =  "38.9072";
-      longitude = "-77.0369";
-      temperature = {
-        day   = 6000;
-        night = 2500;
-      };
-    };
-
     xsession.windowManager.xmonad = {
       enable = true;
       enableContribAndExtras = true;
@@ -58,6 +48,7 @@ in
         keybindings = {
         };
       };
+
       bash = {
         enable = true;
         initExtra = ''
@@ -67,17 +58,21 @@ in
         cs() { cd "$@" && ls -lat; }
         '';
       };
+
       feh.enable = true;
+
       git = {
         enable = true;
         userName = "Charlie Hanley";
         userEmail = "charles.scott.hanley+git@gmail.com";
         aliases.lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
       };
+
       tmux = {
         enable = true;
         extraConfig = builtins.readFile ./tmux.conf;
       };
+
       neovim = {
         enable = true;
         vimAlias = true;
@@ -94,5 +89,21 @@ in
         };
       };
     };
+
+    services.redshift = {
+      enable = true;
+      latitude  =  "38.9072";
+      longitude = "-77.0369";
+      temperature = {
+        day   = 6000;
+        night = 2500;
+      };
+    };
+
+    home.packages = with pkgs; [
+      git
+      ghc haskellPackages.ghcid
+      xosd # unstated dependency of osdCat function in XMonad
+    ];
   };
 }
