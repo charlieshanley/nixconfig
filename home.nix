@@ -102,7 +102,7 @@ in
 
     home.packages = with pkgs; [
       git
-      ghc haskellPackages.ghcid
+      ghc haskellPackages.ghcid cabal-install cabal2nix
       xosd # unstated dependency of osdCat function in XMonad
     ];
   };
