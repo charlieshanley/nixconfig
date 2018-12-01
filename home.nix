@@ -104,6 +104,7 @@ in
       git
       ghc haskellPackages.ghcid cabal-install cabal2nix
       xosd # unstated dependency of osdCat function in XMonad
+      keepass
     ];
   };
 }
