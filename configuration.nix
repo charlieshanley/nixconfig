@@ -39,7 +39,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    tmux vim wget curl htop unzip zip scrot nix-diff firefox
+    tmux vim wget curl htop tree unzip zip scrot nix-diff firefox
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
