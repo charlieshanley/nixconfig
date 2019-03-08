@@ -56,6 +56,7 @@ in
         export LESS_TERMCAP_so=$'\E[30;43m'
         export LESS_TERMCAP_se=$'\E[39;49m'
         cs() { cd "$@" && ls -lat; }
+        eval `dircolors ${./ls_colors}`
         '';
       };
 
@@ -80,7 +81,7 @@ in
           packages.myVimPackage = with pkgs.vimPlugins; {
             start = [
               gruvbox-phaazon
-              gitgutter airline commentary
+              gitgutter airline commentary nerdtree surround "fzf.vim"
               vim-nix haskell-vim-csh
             ];
             opt = [];
