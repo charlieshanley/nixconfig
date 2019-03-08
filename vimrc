@@ -6,6 +6,14 @@ set hidden
 " for gitgutter
 set updatetime=300 
 
+" for NERDTree -----
+" Open NERDTree when vim starts up
+autocmd vimenter * NERDTree 
+" Toggle on Ctrl-n
+map <C-n> :NERDTreeToggle<CR>
+" Close vim if only remaining window is NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif 
+
 let g:gruvbox_italic=1
 colorscheme gruvbox
 set background=dark
@@ -26,11 +34,17 @@ set confirm
 
 set number relativenumber
 
+fun! ExceptNerdtree(cmd)
+    if &ft == "nerdtree"
+        return
+    endif
+    execute a:cmd
+endfun
 " revert to absolute numbers in insert mode and when buffer loses focus
 augroup numbertoggle
   autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+  autocmd BufEnter,FocusGained,InsertLeave * call ExceptNerdtree("set relativenumber")
+  autocmd BufLeave,FocusLost,InsertEnter   * call ExceptNerdtree("set norelativenumber")
 augroup end
 
 set notimeout ttimeout ttimeoutlen=200
@@ -45,5 +59,16 @@ set colorcolumn=80
 
 let mapleader=" "
 map Y y$
-noremap <C-L> :nohl<CR><C-L>
 
+" clear search highlight
+nnoremap <leader>l :nohl<CR><C-L> 
+
+" Navigate between splits with Ctrl-<hjkl>
+nnoremap <C-H> <C-W><C-H>
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+
+" open splits
+nnoremap <leader>\ :vnew<CR>
+nnoremap <leader>- :new<CR>
